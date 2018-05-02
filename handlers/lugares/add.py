@@ -4,6 +4,7 @@ from google.appengine.api import users
 from model.Lugar import Lugar
 from webapp2_extras import jinja2
 import time
+from google.appengine.api import images
 
 class AddLugar(webapp2.RequestHandler):
     def get(self):
@@ -35,6 +36,7 @@ class AddLugar(webapp2.RequestHandler):
         lugar = self.request.get("lugar", "").strip()
         categoria = self.request.get("categoria", "").strip()
         foto = self.request.get("foto")
+        foto = images.resize(foto, 1200,580)
         if (len(nombre) == 0 or len(descripcion) == 0 or len(num_telefono) == 0 or len(lugar) == 0
             or len(categoria) == 0):
             self.response.write("Error")

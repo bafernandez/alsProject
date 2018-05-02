@@ -10,38 +10,57 @@
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" src="data:image/png;base64,{{foto.encode('base64')}}" alt="">
+            <img class="img-fluid" style="height: 320px; width: 100%;"
+                 src="data:image/png;base64,{{foto.encode('base64')}}" alt="">
         </div>
 
         <div class="col-md-4">
-            <h3 class="my-3" style="text-align: center;">Información</h3>
-            <ul style="list-style-type: none;">
-                <li><i class="fas fa-map-marker"></i>{{ lugar }}</li>
-                <br/>
-                <li><i class="fas fa-tags"></i> {{ categoria }}</li>
-                <br/>
-                <li><i class="fas fa-phone"></i></i>{{ num_telefono }}</li>
-                <br/>
-                <li><i class="fas fa-globe"></i></i> {{ pagweb }}</li>
-
-            </ul>
-
+            <div class="bg-white" style="width:100%;border:1px solid silver;padding: 10px;">
+                <h3 class="my-3" style="text-align: center;">Información</h3>
+                <ul style="list-style-type: none;">
+                    <br/>
+                    <li><i class="fas fa-map-marker"></i>{{ lugar }}</li>
+                    <br/>
+                    <li><i class="fas fa-tags"></i> {{ categoria }}</li>
+                    <br/>
+                    <li><i class="fas fa-phone"></i></i>{{ num_telefono }}</li>
+                    <br/>
+                    <li><i class="fas fa-globe"></i></i> {{ pagweb }}</li>
+                    <br/>
+                </ul>
+            </div>
         </div>
         <!-- /.row -->
         <br/>
         <!-- Related Projects Row -->
-        <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="container bg-white" style="margin-top: 20px;border:1px solid silver;">
+            <!-- Example row of columns -->
             <div class="row">
-                <article>
+                <div class="col-md-12">
+                    <br/>
                     <p>{{ descripcion }}</p>
-                </article>
+
+                </div>
+
             </div>
         </div>
-        <div class="col-md-1"></div>
-        <!-- /.row -->
-
     </div>
 </div>
-<!-- /.container -->
-{% endblock %}
+
+<div class="container" style="border-top: 4px solid blue;margin-top: 20px;">
+    <!-- Example row of columns -->
+    <div class="form-group row">
+        <label class="col-12 col-sm-5 col-md-4 col-form-label" for='valoracion'>Valoración</label>
+        <input type='number' class="form-control col-12 col-sm-7 col-md-8" name='valoracion' min="1" max="5"
+               maxlength="20" required>
+    </div>
+    <div class="form-group row">
+        <label class="col-12 col-sm-5 col-md-4 col-form-label" for='tipoej'>Descripción</label>
+        <textarea name="comentario" class="form-control col-12" id="comentario"
+                  placeholder="Escribe aquí tu comentario" rows="5" cols="50"
+                  onchange="validateText(this,255)"></textarea>
+    </div>
+</div>
+
+    <!-- /.container -->
+    {% endblock %}

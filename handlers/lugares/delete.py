@@ -32,14 +32,18 @@ class DeleteHandler(webapp2.RequestHandler):
 
         jinja = jinja2.get_jinja2(app=self.app)
 
+
+        lugar.key.delete()
+        lugares = Lugar.query()
+        time.sleep(0.1)
+
         values = {
             "usuario": usuario,
+            "lugares": lugares,
             "logout": log,
             "admin": admin
         }
 
-        lugar.delete()
-        time.sleep(0.1)
         self.response.write(jinja.render_template("lugar_list.html", **values))
 
 app = webapp2.WSGIApplication([
