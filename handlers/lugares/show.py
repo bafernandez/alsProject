@@ -21,6 +21,8 @@ class ShowHandler(webapp2.RequestHandler):
             return
 
         user = users.get_current_user()
+        admin = users.is_current_user_admin()
+
         if user:
             usuario = user.nickname()
             log = users.create_logout_url('/')
@@ -39,7 +41,8 @@ class ShowHandler(webapp2.RequestHandler):
             "categoria": lugar.categoria,
             "foto": lugar.foto,
             "usuario": usuario,
-            "logout": log
+            "logout": log,
+            "admin": admin
         }
 
         self.response.write(jinja.render_template("lugar_show.html", **values))

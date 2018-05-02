@@ -47,22 +47,19 @@
         </div>
 
     </div>
-    <div class="form-group">
-        <label for="InputFile">Foto del lugar</label>
 
-        <div class="input-group mb-3">
-
-            <div class="input-group-prepend">
-                <span class="input-group-text">Subir</span>
-            </div>
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="InputFile" name="foto" onload="comprobarArchivo(this)">
-                <label class="custom-file-label" for="InputFile">Selecciona Archivo</label>
-            </div>
+    <br/>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Subir</span>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="InputFile" name="foto" onload="comprobarArchivo(this)">
+            <label class="custom-file-label" for="InputFile">Sube una fotografía del lugar</label>
         </div>
     </div>
 
-    <div class="form-group" data-toggle="buttons">
+    <div>
         <button type="submit" class="btn btn-primary btn-lg">Añadir</button>
         <button class="btn btn-secondary btn-lg" onclick="window.history.back();">Volver</button>
     </div>
