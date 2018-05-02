@@ -1,0 +1,43 @@
+application: alsproject
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /bootstrap
+  static_dir: bootstrap
+
+- url: /assets
+  static_dir: assets
+
+- url: /lugares/add
+  script: handlers.lugares.add.app
+
+- url: /lugares/show
+  script: handlers.lugares.show.app
+
+- url: /lugares/list
+  script: handlers.lugares.list.app
+
+- url: /lugares/edit
+  script: handlers.lugares.edit.app
+
+- url: /lugares/delete
+  script: handlers.lugares.delete.app
+
+- url: /lugares/search
+  script: handlers.lugares.search.app
+
+- url: .*
+  script: handlers.main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.2"
+- name: jinja2
+  version: "latest"

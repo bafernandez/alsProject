@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+  {% block content %}
+  <form id="addlugar" method="POST" action="/lugares/add" enctype="multipart/form-data">
+  <div class="form-group">
+     <div class="form-group">
+      <label for="nombreInput">Nonbre</label>
+      <input type="text" class="form-control" id="nombreInputInput" name="nombre" placeholder="Nombre del lugar">
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="descripcionInput">Descripcion del lugar </label>
+    <textarea class="form-control" id="descriptionInput" name="descripcion" rows="3"></textarea>
+  </div>
+    <div class="row">
+  <div class="form-group col-md-6">
+    <label for="telefonoInput">Telefono</label>
+    <input type="text" class="form-control" id="telefonoInput" name="num_telefono" placeholder="Numero de telefono">
+  </div>
+   <div class="form-group col-md-6">
+    <label for="emailInput">Email</label>
+    <input type="email" class="form-control" id="emailInput" name="email" placeholder="emaildellugar@opcional.info">
+  </div>
+    </div>
+      <div class="form-group">
+     <div class="form-group">
+      <label for="lugarInput">Dirección del lugar</label>
+      <input type="text" class="form-control" id="direccionInput" name="lugar" placeholder="Dirección del lugar, Provincia">
+     </div>
+  </div>
+      <div class="form-group">
+     <div class="form-group">
+      <label for="categoriaInput">Categoría</label>
+      <input type="text" class="form-control" id="categoriaInput" name="categoria">
+     </div>
+  </div>
+  <div class="form-group">
+    <label for="InputFile">Foto del lugar</label>
+    <input type="file" class="form-control-file" id="InputFile" name="foto">
+    <small id="fileHelp" class="form-text text-muted">Foto representativa del lugar</small>
+  </div>
+  <button type="submit" class="btn btn-primary">Añadir</button>
+  </div>
+</form>
+{% endblock %}
