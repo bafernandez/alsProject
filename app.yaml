@@ -33,6 +33,18 @@ handlers:
 - url: /lugares/search
   script: handlers.lugares.search.app
 
+- url: /avisos/add
+  script: handlers.avisos.add.app
+
+- url: /avisos/list
+  script: handlers.avisos.list.app
+
+- url: /avisos/edit
+  script: handlers.avisos.edit.app
+
+- url: /avisos/delete
+  script: handlers.avisos.delete.app
+
 - url: .*
   script: handlers.main.app
 
