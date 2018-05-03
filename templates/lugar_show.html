@@ -3,29 +3,29 @@
 <div class="container">
 
     <!-- Portfolio Item Heading -->
-    <h1 class="my-4" style="text-align: center;">{{ nombre }}
+    <h1 class="my-4" style="text-align: center; border-bottom: 4px solid rgba(138,149,133,0.59)">{{ nombre }}
     </h1>
 
     <!-- Portfolio Item Row -->
     <div class="row">
 
         <div class="col-md-8">
-            <img class="img-fluid" style="height: 320px; width: 100%;"
+            <img class="img-fluid" style="height:auto; max-height: 320px; width: 100%; border-radius: 15px;"
                  src="data:image/png;base64,{{foto.encode('base64')}}" alt="">
         </div>
 
         <div class="col-md-4">
-            <div class="bg-white" style="width:100%;border:1px solid silver;padding: 10px;">
-                <h3 class="my-3" style="text-align: center;">Información</h3>
+            <div class="bg-white" style="width:100%;border:1px solid silver; border-radius: 10px;">
+                <h3 class="my-3" style="text-align: center; ">Información</h3>
                 <ul style="list-style-type: none;">
                     <br/>
-                    <li><i class="fas fa-map-marker"></i>{{ lugar }}</li>
+                    <li><i class="fas fa-map-marker" style="margin-right: 15px;"></i>{{ lugar }}</li>
                     <br/>
-                    <li><i class="fas fa-tags"></i> {{ categoria }}</li>
+                    <li><i class="fas fa-tags" style="margin-right: 15px;"></i>{{ categoria }}</li>
                     <br/>
-                    <li><i class="fas fa-phone"></i></i>{{ num_telefono }}</li>
+                    <li><i class="fas fa-phone" style="margin-right: 15px;"></i></i>{{ num_telefono }}</li>
                     <br/>
-                    <li><i class="fas fa-globe"></i></i> {{ pagweb }}</li>
+                    <li><i class="fas fa-globe" style="margin-right: 15px;"></i></i>{{ pagweb }}</li>
                     <br/>
                 </ul>
             </div>
@@ -37,9 +37,7 @@
             <!-- Example row of columns -->
             <div class="row">
                 <div class="col-md-12">
-                    <br/>
-                    <p>{{ descripcion }}</p>
-
+                    <p style="margin-top:10px; margin-bottom:10px; text-align: justify;">{{ descripcion }}</p>
                 </div>
 
             </div>
@@ -57,18 +55,37 @@
 {% else %}
 <div class="container" style="border-top: 4px solid blue;margin-top: 20px; border-bottom: 4px solid blue;">
     <div class="form-group row">
-        <label class="col-12 col-sm-5 col-md-4 col-form-label" for='comentario'>Descripción</label>
-        <textarea name="comentario" class="form-control col-12" id="comentario"
+        <form class="col-md-12" id="addcomentariolugar" method="POST" action="/lugares/show"
+              enctype="multipart/form-data">
+            <br/>
+            <div class="row">
+        <textarea name="comentario" class="form-control col-md-10" id="comentario"
                   placeholder="Escribe aquí tu comentario" rows="5" cols="50"
                   onchange="validateText(this,255)"></textarea>
-        <input type="hidden" name="id" value="{{ id }}">
-
+                <input type="hidden" name="id" value="{{ id }}">
+                <input type="hidden" name="usuario" value="{{ usuario }}">
+                <button type="submit" class="btn btn-primary btn-lg col-md-2">Publicar</button>
+            </div>
+        </form>
     </div>
 </div>
 
 {% endif %}
 
 <br/>
-
+{% if comentarios and comentarios.count > 0 %}
+{% for comentario in comentarios %}
+<div class="card mb-3">
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>{{ comentario.comentario }}</p>
+            <footer class="blockquote-footer">{{ comentario.autor }} el día {{ comentario.fecha.strftime("%Y-%m-%d")
+                }}
+            </footer>
+        </blockquote>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
 <!-- /.container -->
 {% endblock %}

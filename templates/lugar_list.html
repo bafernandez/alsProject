@@ -20,7 +20,7 @@
 <br/>
 <br/>
 <div class="container">
-    {% if lugares and lugares.count > 0 %}
+    {% if lugares and lugares.count() > 0 %}
     <table class="table table-striped">
         <thead>
         <tr>
@@ -52,7 +52,9 @@
         </tbody>
     </table>
     {% else %}
-    <h3>No se han obtenido datos</h3>
+    <div class="row col-md-8">
+        <h2>Por ahora no hay avisos</h2>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

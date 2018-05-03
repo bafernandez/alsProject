@@ -37,7 +37,7 @@ function comprobarArchivo(campo) {
 
 
 function comprobarTelf(campo) {
-    var pat = /^\+{0,1}[0-9]{0,2}[0-9]{9}$/;									//Patrón de un número telefónico. 0034 opcional
+    var pat = /^[0-9]{0,2}[0-9]{9}$/;									//Patrón de un número telefónico. 0034 opcional
     if (!(campo.value.match(pat))) {									//Comprueba si el valor del campo es un teléfono
         alert("El telefono es incorrecto");
         campo.style.backgroundColor = "red";                               //Colorea ese campo de amarillo

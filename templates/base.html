@@ -13,14 +13,11 @@
     <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
           integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-    <link href="./styles.css" rel="stylesheet">
-    <link href="./search.css" rel="stylesheet">
-    <script src="../assets/validaciones.js" language=”javascript” type=”text/javascript”></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 
 </head>
 
 <body class="bg-light">
-
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="margin-bottom: 20px;">
@@ -55,11 +52,13 @@
                 {% endif %}
             </ul>
             {% if usuario == "none" %}
-            <i class="fab fa-leanpub"></i><a class="nav-link" href="{{ log }}">Identificarse</a>
+            <a class="nav-link btn btn-primary" href="{{ log }}"><i class="fab fa-leanpub"></i> Identificarse</a>
             {% else %}
-            <a class="nav-link" href="#"><i class="fa fa-user"></i></a>{{ usuario }}<a class="nav-link"
-                                                                                       href="{{ log }}"><i
-                class="fa fa-power-off"></i></a>
+
+            <div class="user-name" style="color: white; font-weight: bold;"><i class="fa fa-user"></i> {{ usuario }}
+            </div>
+            <a class="nav-link btn btn-danger" style="border-radius: 50px; margin-left: 20px" href="{{ log }}">
+                <i class="fa fa-power-off"></i></a>
             {% endif %}
         </div>
     </nav>
@@ -79,5 +78,12 @@
 <script>window.jQuery || document.write('<script src="../bootstrap/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
 <script src="../bootstrap/assets/js/vendor/popper.min.js"></script>
 <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../assets/validaciones.js" language=”javascript” type=”text/javascript”></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+<script>$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});</script>
 </body>
 </html>

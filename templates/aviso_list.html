@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-{% if avisos and avisos.count > 0 %}
+{% if avisos and avisos.count() > 0 %}
 {% for aviso in avisos %}
-<div class="row" id="postlist">
-    <div class="panel col-md-8" style="border-bottom: solid darkslategrey">
+
+<div class="row justify-content-md-center" id="postlist">
+    <div class="panel col-md-8" style="border-bottom: solid darkslategrey; margin-bottom: 5px;">
         <div class="panel-heading">
             <div class="text-center">
                 <div class="row">
@@ -13,8 +14,9 @@
                     </div>
                     <div class="col-sm-3">
                         <h4 class="pull-right">
-                            <small><em>{{ aviso.fecha.strftime("%Y-%m-%d") }}<br>{{ aviso.fecha.strftime("%H:%M")
-                                }}</em></small>
+                            <p style="font-size: medium">{{ aviso.fecha.strftime("%d/%m/%Y") }}<br>{{
+                                aviso.fecha.strftime("%H:%M")
+                                }}</p>
                         </h4>
                     </div>
                 </div>
@@ -26,7 +28,7 @@
         </div>
 
         {% if admin %}
-        <div class="panel-footer">
+        <div class="panel-footer" style="margin-bottom: 5px; text-align: right;">
             <a class="btn-sm btn-success" href="/avisos/edit?id={{ aviso.key.urlsafe() }}" role="button"><i
                     class="far fa-edit"></i></a>
             <a class="btn-sm btn-danger" href="/avisos/delete?id={{ aviso.key.urlsafe() }}" role="button"><i
@@ -37,7 +39,9 @@
     {% endfor %}
 </div>
 {% else %}
-<p>Por ahora no hay avisos</p>
+<div class="row col-md-8">
+    <h2>Por ahora no hay avisos</h2>
+</div>
 {% endif %}
 <br/>
 {% endblock %}

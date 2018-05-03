@@ -14,6 +14,7 @@ handlers:
 
 - url: /assets
   static_dir: assets
+  application_readable: true
 
 - url: /lugares/add
   script: handlers.lugares.add.app
