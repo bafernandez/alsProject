@@ -59,7 +59,7 @@ class EventAddHandler(webapp2.RequestHandler):
                        lugar_id=lugar_id, fecha=fecha, hora=hora, precio=precio, foto=foto)
         evento.put()
         time.sleep(0.1)
-        self.redirect("/")
+        self.redirect("/eventos/main_list")
 
 
 app = webapp2.WSGIApplication([

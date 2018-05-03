@@ -19,13 +19,15 @@
                 <h3 class="my-3" style="text-align: center; ">Información</h3>
                 <ul style="list-style-type: none;">
                     <br/>
-                    <li><i class="fas fa-map-marker" style="margin-right: 15px;"></i>{{ lugar }}</li>
+                    <li><i class="fas fa-map-marker" style="margin-right: 15px;"></i><a href="/lugares/show?id={{ lugar_id }}">{{ nombre_lugar }}</a></li>
                     <br/>
-                    <li><i class="fas fa-tags" style="margin-right: 15px;"></i>{{ categoria }}</li>
+                    <li><i class="fas fa-calendar-alt" style="margin-right: 15px;"></i></i> {{ fecha.strftime("%d/%m/%Y") }}</li>
                     <br/>
-                    <li><i class="fas fa-phone" style="margin-right: 15px;"></i></i>{{ num_telefono }}</li>
+                    <li><i class="fas fa-clock" style="margin-right: 15px;"></i></i>{{ hora.strftime("%H:%M") }}</li>
                     <br/>
                     <li><i class="fas fa-globe" style="margin-right: 15px;"></i></i>{{ pagweb }}</li>
+                    <br/>
+                     <li><i class="fas fa-euro-sign" style="margin-right: 15px;"></i></i>{{ precio }}</li>
                     <br/>
                 </ul>
             </div>
@@ -55,7 +57,7 @@
 {% else %}
 <div class="container" style="border-top: 4px solid blue;margin-top: 20px; border-bottom: 4px solid blue;">
     <div class="form-group row">
-        <form class="col-md-12" id="addcomentariolugar" method="POST" action="/lugares/show"
+        <form class="col-md-12" id="addcomentarioevento" method="POST" action="/eventos/show"
               enctype="multipart/form-data">
             <br/>
             <div class="row">

@@ -20,32 +20,34 @@
 <br/>
 <br/>
 <div class="container">
-    {% if lugares and lugares.count() > 0 %}
+    {% if eventos and eventos.count() > 0 %}
     <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">Nombre</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Teléfono</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
             <th scope="col">Web</th>
-            <th scope="col">Categoría</th>
+            <th scope="col">Lugar</th>
+            <th scope="col">Precio</th>
             <th scope="col">Acción</th>
         </tr>
         </thead>
         <tbody>
-        {% for lugar in lugares %}
+        {% for evento in eventos %}
         <tr>
-            <th scope="row">{{ lugar.nombre }}</th>
-            <td>{{ lugar.lugar }}</td>
-            <td>{{ lugar.num_telefono }}</td>
-            <td>{{ lugar.pagweb }}</td>
-            <td>{{ lugar.categoria }}</td>
+            <th scope="row">{{ evento.nombre }}</th>
+            <td>{{ evento.fecha.strftime("%d/%m/%Y") }}</td>
+            <td>{{ evento.hora.strftime("%H:%M") }}</td>
+            <td>{{ evento.pagweb }}</td>
+            <td><a href="/lugares/show?id={{ evento.lugar_id }}">{{ evento.nombre_lugar }}</a></td>
+            <td>{{ evento.precio }}</td>
             <td>
-                <a class="btn btn-info" href="/lugares/show?id={{ lugar.key.urlsafe() }}" role="button"><i
+                <a class="btn btn-info" href="/eventos/show?id={{ evento.key.urlsafe() }}" role="button"><i
                         class="fas fa-eye"></i></a>
-                <a class="btn btn-success" href="/lugares/edit?id={{ lugar.key.urlsafe() }}" role="button"><i
+                <a class="btn btn-success" href="/eventos/edit?id={{ evento.key.urlsafe() }}" role="button"><i
                         class="far fa-edit"></i></a>
-                <a class="btn btn-danger" href="/lugares/delete?id={{ lugar.key.urlsafe() }}" role="button"><i
+                <a class="btn btn-danger" href="/eventos/delete?id={{ evento.key.urlsafe() }}" role="button"><i
                         class="far fa-trash-alt"></i></a>
 
             </td>
@@ -55,7 +57,7 @@
     </table>
     {% else %}
     <div class="row col-md-8">
-        <h2>Por ahora no hay avisos</h2>
+        <h2>Por ahora no hay eventos</h2>
     </div>
     {% endif %}
 </div>

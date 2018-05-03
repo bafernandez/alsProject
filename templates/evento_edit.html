@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<form id="editevento" method="POST" action="/eventos/edit" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="form-group">
+            <label for="nombreInput">Nombre</label>
+            <input type="text" class="form-control" id="nombreInput" name="nombre" required
+                   placeholder="Nombre del lugar" value="{{ nombre }}" readonly
+                   onchange="comprobarAlfabetico(this,20)">
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="descripcionInput">Descripcion del evento </label>
+        <textarea class="form-control" id="descripcionInput" name="descripcion" rows="3"
+                  onchange="comprobarTexto(this,1000)">{{ descripcion }}</textarea>
+    </div>
+
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="lugarInput">Lugar de celebración</label>
+            {% if lugares.count() > 0 %}
+            <select class="js-example-basic-single" name="lugar_id">
+                {% for lugar in lugares %}
+                {% if lugar.nombre == nombre_lugar %}
+                <option value="{{ lugar.key.urlsafe() }}" selected>{{ lugar.nombre }}</option>
+                {% else %}
+                <option value="{{ lugar.key.urlsafe() }}">{{ lugar.nombre }}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+            {% endif %}
+        </div>
+        <div class="form-group col-md-6">
+            <label for="emailInput">Email</label>
+            <input type="email" class="form-control" id="emailInput" name="email" required
+                   placeholder="emaildellugar@opcional.info" value="{{ pagweb}}" onchange="comprobarEmail(this,40)">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label for="fechaInput">Fecha</label>
+            <input type="date" class="form-control datepicker" id="fechaInput" name="fecha" value="{{ fecha }}" required
+                   onchange="comprobarTexto(this,60)">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="horaInput">Hora</label>
+            <input type="time" class="form-control" id="horaInput" name="hora" value="{{ hora }}" required
+                   onchange="comprobarTexto(this,60)">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="precioInput">Precio</label>
+            <input type="text" class="form-control" id="precioInput" name="precio" value="{{ precio }}" required
+                   placeholder="Precio" onchange="comprobarTexto(this,60)">
+        </div>
+    </div>
+
+    <br/>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text">Subir</span>
+        </div>
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="InputFile" name="foto" onchange="comprobarArchivo(this)">
+            <label class="custom-file-label" for="InputFile">Sube una fotografía del lugar</label>
+        </div>
+    </div>
+
+    <div style="text-align:right; margin-top: 30px">
+        <input type="hidden" name="id" value="{{ id }}">
+        <button type="submit" class="btn btn-primary btn-lg">Editar</button>
+        <button class="btn btn-secondary btn-lg" onclick="window.history.back();">Volver</button>
+    </div>
+</form>
+
+{% endblock %}

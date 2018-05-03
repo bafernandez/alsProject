@@ -49,6 +49,21 @@ handlers:
 - url: /eventos/add
   script: handlers.eventos.add.app
 
+- url: /eventos/main_list
+  script: handlers.eventos.main_list.app
+
+- url: /eventos/list
+  script: handlers.eventos.list.app
+
+- url: /eventos/edit
+  script: handlers.eventos.edit.app
+
+- url: /eventos/show
+  script: handlers.eventos.show.app
+
+- url: /eventos/delete
+  script: handlers.eventos.delete.app
+
 - url: .*
   script: handlers.main.app
 
