@@ -24,26 +24,44 @@
                    placeholder="emaildellugar@opcional.info" value="{{ email }}">
         </div>
     </div>
-    <div class="form-group">
-        <div class="form-group">
+
+    <div class="row">
+        <div class="form-group col-md-8">
             <label for="lugarInput">Dirección del lugar</label>
-            <input type="text" class="form-control" id="direccionInput" name="lugar"
-                   placeholder="Dirección del lugar, Provincia" value="{{ lugar }}">
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="form-group">
-            <label for="categoriaInput">Categoría</label>
-            <select class="form-control" id="categoriaSelect" name="categoria" value="{{ categoria }}" required>
-                <option selected="true" disabled>Selecciona una categoría</option>
-                <option value="Edificios Religiosos">Edificios Religiosos</option>
-                <option value="Museos">Museos</option>
-                <option value="Monumentos">Monumentos</option>
-                <option value="Lugares Históricos">Lugares Históricos</option>
-                <option value="Otros">Otros</option>
-            </select>
+            <input type="text" class="form-control" id="direccionInput" name="lugar" required
+                   placeholder="Dirección del lugar, Provincia" value="{{ lugar }}" onchange="comprobarTexto(this,60)">
         </div>
 
+        <div class="form-group col-md-4">
+            <label for="categoriaInput">Categoría</label>
+            <select class="form-control" id="categoriaSelect" name="categoria" required>
+                {% if categoria == "Edificios Religiosos" %}
+                <option value="Edificios Religiosos" selected>Edificios Religiosos</option>
+                {% else %}
+                <option value="Edificios Religiosos">Edificios Religiosos</option>
+                {% endif %}
+                {% if categoria == "Museos" %}
+                <option value="Museos" selected>Museos</option>
+                {% else %}
+                <option value="Museos">Museos</option>
+                {% endif %}
+                {% if categoria == "Monumentos" %}
+                <option value="Monumentos" selected>Monumentos</option>
+                {% else %}
+                <option value="Monumentos">Monumentos</option>
+                {% endif %}
+                {% if categoria == "Lugares Históricos" %}
+                <option value="Lugares Históricos" selected>Lugares Históricos</option>
+                {% else %}
+                <option value="Lugares Historicos">Lugares Históricos</option>
+                {% endif %}
+                {% if categoria == "Otros" %}
+                <option value="Otros" selected>Otros</option>
+                {% else %}
+                <option value="Otros">Otros</option>
+                {% endif %}
+            </select>
+        </div>
     </div>
     <br/>
     <div class="input-group mb-3">
@@ -56,10 +74,10 @@
         </div>
     </div>
 
-
-    <input type="hidden" name="id" value="{{ id }}">
-    <button type="submit" class="btn btn-primary btn-lg">Editar</button>
-    <button class="btn btn-secondary btn-lg" onclick="window.history.back();">Volver</button>
+    <div style="text-align:right; margin-top: 30px">
+        <input type="hidden" name="id" value="{{ id }}">
+        <button type="submit" class="btn btn-primary btn-lg">Editar</button>
+        <button class="btn btn-secondary btn-lg" onclick="window.history.back();">Volver</button>
     </div>
 </form>
 <br/>

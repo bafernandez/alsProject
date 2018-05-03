@@ -5,9 +5,12 @@ class Evento(ndb.Model):
     descripcion = ndb.TextProperty()
     nombre_lugar = ndb.StringProperty()
     pagweb = ndb.StringProperty()
-    lugar = ndb.StringProperty()
-    fecha = ndb.DateTimeProperty()
+    lugar_id = ndb.StringProperty()
+    fecha = ndb.DateProperty()
+    hora = ndb.TimeProperty()
+    precio = ndb.StringProperty()
     foto = ndb.BlobProperty()
+
 
     @ndb.transactional
     def update(evento):

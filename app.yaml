@@ -46,6 +46,9 @@ handlers:
 - url: /avisos/delete
   script: handlers.avisos.delete.app
 
+- url: /eventos/add
+  script: handlers.eventos.add.app
+
 - url: .*
   script: handlers.main.app
 

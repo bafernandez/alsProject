@@ -17,7 +17,7 @@
 <div class="album py-5">
 
     <div class="container">
-        {% if lugares and lugares.count > 0 %}
+        {% if lugares and lugares.count() > 0 %}
 
         <div class="row">
             {% for lugar in lugares %}
@@ -44,6 +44,10 @@
                 </div>
             </div>
             {% endfor %}
+        </div>
+        {% else %}
+        <div class="row justify-content-md-center" id="postlist">
+            <div class="col-md-8"><h2>No se han encontrado lugares</h2></div>
         </div>
         {% endif %}
     </div>

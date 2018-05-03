@@ -32,7 +32,7 @@ class AddLugar(webapp2.RequestHandler):
         nombre = self.request.get("nombre", "").strip()
         descripcion = self.request.get("descripcion", "").strip()
         num_telefono = self.request.get("num_telefono", "").strip()
-        pagweb = self.request.get("pagweb", "").strip()
+        pagweb = self.request.get("email", "").strip()
         lugar = self.request.get("lugar", "").strip()
         categoria = self.request.get("categoria", "").strip()
         foto = self.request.get("foto")
