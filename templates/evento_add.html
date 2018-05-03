@@ -50,7 +50,7 @@
         <div class="form-group col-md-4">
             <label for="precioInput">Precio</label>
             <input type="text" class="form-control" id="precioInput" name="precio" required
-                   placeholder="Precio" onchange="comprobarTexto(this,60)">
+                   placeholder="Precio" onchange="comprobarPrecio(this)">
         </div>
     </div>
 
@@ -60,15 +60,119 @@
             <span class="input-group-text">Subir</span>
         </div>
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="InputFile" name="foto" onchange="comprobarArchivo(this)">
+            <input type="file" class="custom-file-input" id="InputFile" name="foto" onchange="comprobarArchivo(this)" required>
             <label class="custom-file-label" for="InputFile">Sube una fotografía del lugar</label>
         </div>
     </div>
 
     <div style="text-align:right; margin-top: 30px">
-        <button type="submit" class="btn btn-primary btn-lg">Añadir</button>
+        <button type="submit" class="btn btn-primary btn-lg" onclick="return chk()">Añadir</button>
         <button class="btn btn-secondary btn-lg" onclick="window.history.back();">Volver</button>
     </div>
 </form>
 
+
+<script>
+
+    function comprobarEmail(campo, size) {
+        var pat = /^(\w+)@(\w+)(\.(\w+)){1,2}$/i;       //Patrón que vale para email de tipo x@x.x y x@x.x.x
+
+        if ((campo.value.length > size)) {              //Comprueba si el contenido del campo es mayor que size
+            alert("Email muy grande. Por favor introduzca otro que tenga menos de" + size + " caracteres");
+            campo.style.borderColor = "red";
+            return false;
+
+        }
+        if (!(campo.value.match(pat))) {                    //Comprueba si el valor del campo coincide con el patrón
+            alert("El email introducido no tiene el formato correcto");
+            campo.style.borderColor = "red";
+            return false;
+
+        }
+        campo.style.borderColor = "green";
+        return true;
+    }
+
+
+    function comprobarPrecio(campo) {
+        var pat = /^[0-9]{2,3}(\-[0-9]{2,3}){0,1}$/;
+        if (!(campo.value.match(pat))) {
+            alert("El precio es único o un rango");
+            campo.style.borderColor = "red";
+            return false;
+
+        }
+        campo.style.borderColor = "green";
+        return true;
+
+    }
+
+    function comprobarAlfabetico(campo, size) {
+        var pat = /^[a-zñáéíóúü]+((\s[a-zñáéíóúü]+)*)$/i;    //Patrón para palabras alfabéticas en Español
+        var nul = /^([Nn][Uu][Ll][Ll])$/i;                                  //Patrón para null
+
+        if (campo.value.length > size) {                                        //Comprueba si el contenido del campo es mayor que size
+            alert("El valor introducido es mayor que el máximo permitido: " + size);
+            campo.style.borderColor = "red";
+            return false;
+        }
+
+        if (!(campo.value.match(pat))) {                                        //Si no coincide con el patrón pat, return false
+            alert("El campo tiene valores no permitidos");
+            campo.style.borderColor = "red";
+            return false;
+        }
+
+        if ((campo.value.trim()).match(nul)) {                              //trim elimina espacios y comprueba si el campo tiene el valor null.
+            alert("NULL no es un nombre válido");                      //match devuelve null si no encuentra el patrón
+            campo.style.borderColor = "red";
+            return false;
+        }
+        campo.style.borderColor = "green";
+        return true;
+    }
+
+    function comprobarTexto(campo, size) {
+        if (campo.value) {
+            if (campo.value.length > size) {
+                alert('Longitud incorrecta. El atributo ' + campo.name + ' debe ser maximo ' + size + ' y es ' + campo.value.length);
+                campo.style.borderColor = "red";
+                return false;
+            }
+        }
+        campo.style.borderColor = "green";
+        return true;
+    }
+
+    function chk() {
+        const nombreInput = document.getElementById("nombreInput");
+        const descripcionInput = document.getElementById("descripcionInput");
+        const emailInput = document.getElementById("emailInput");
+        const precioInput = document.getElementById("precioInput");
+        const InputFile = document.getElementById("InputFile");
+
+        if (!comprobarAlfabetico(nombreInput, 20)) {
+            return false;
+        }
+
+        if (!comprobarTexto(descripcionInput, 500)) {
+            return false;
+        }
+
+        if (!comprobarEmail(emailInput, 40)) {
+            return false;
+        }
+
+        if (!comprobarPrecio(precioInput)) {
+            return false;
+        }
+
+        if (!comprobarArchivo(InputFile)) {
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
 {% endblock %}

@@ -47,7 +47,8 @@
                         class="fas fa-eye"></i></a>
                 <a class="btn btn-success" href="/eventos/edit?id={{ evento.key.urlsafe() }}" role="button"><i
                         class="far fa-edit"></i></a>
-                <a class="btn btn-danger" href="/eventos/delete?id={{ evento.key.urlsafe() }}" role="button"><i
+                <a class="btn btn-danger" href="/eventos/delete?id={{ evento.key.urlsafe() }}" role="button"
+                   onclick="return confirm('¿Seguro que quieres borrar este lugar?');"><i
                         class="far fa-trash-alt"></i></a>
 
             </td>

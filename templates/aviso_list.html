@@ -2,9 +2,10 @@
 {% block content %}
 
 {% if avisos and avisos.count() > 0 %}
-{% for aviso in avisos %}
+
 
 <div class="row justify-content-md-center" id="postlist">
+    {% for aviso in avisos %}
     <div class="panel col-md-8" style="border-bottom: solid darkslategrey; margin-bottom: 5px;">
         <div class="panel-heading">
             <div class="text-center">
@@ -31,7 +32,8 @@
         <div class="panel-footer" style="margin-bottom: 5px; text-align: right;">
             <a class="btn-sm btn-success" href="/avisos/edit?id={{ aviso.key.urlsafe() }}" role="button"><i
                     class="far fa-edit"></i></a>
-            <a class="btn-sm btn-danger" href="/avisos/delete?id={{ aviso.key.urlsafe() }}" role="button"><i
+            <a class="btn-sm btn-danger" href="/avisos/delete?id={{ aviso.key.urlsafe() }}" role="button"
+               onclick="return confirm('¿Seguro que quieres borrar este lugar?');"><i
                     class="far fa-trash-alt"></i></a>
         </div>
         {% endif %}

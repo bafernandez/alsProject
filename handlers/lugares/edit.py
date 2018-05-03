@@ -64,7 +64,7 @@ class EditLugar(webapp2.RequestHandler):
         lugar.nombre = self.request.get("nombre", "").strip()
         lugar.descripcion = self.request.get("descripcion", "").strip()
         lugar.num_telefono = self.request.get("num_telefono", "").strip()
-        lugar.pagweb = self.request.get("pagweb", "").strip()
+        lugar.pagweb = self.request.get("email", "").strip()
         lugar.lugar = self.request.get("lugar", "").strip()
         lugar.categoria = self.request.get("categoria", "").strip()
         foto = self.request.get("foto")

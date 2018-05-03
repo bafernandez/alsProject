@@ -3,27 +3,83 @@
 <form id="addaviso" method="POST" action="/avisos/add" enctype="multipart/form-data">
     <div class="form-group">
         <div class="form-group">
-            <label for="nombreInput">Asunto</label>
+            <label for="asuntoInput">Asunto</label>
             <input type="text" class="form-control" id="asuntoInput" name="asunto" required
                    placeholder="Asunto del aviso"
-                   onload="comprobarAlfabetico(this,30)">
+                   onchange="comprobarAlfabetico(this,30)">
         </div>
     </div>
     <div class="form-group">
         <label for="descripcionInput">Información del aviso </label>
-        <textarea class="form-control" id="descriptionInput" name="descripcion" rows="10"
-                  onload="comprobarTexto(this,300)"></textarea>
+        <textarea class="form-control" id="descripcionInput" name="descripcion" rows="10"
+                  onchange="comprobarTexto(this,300)"></textarea>
     </div>
 
 
 
     <div>
-        <button type="submit" class="btn btn-primary btn-lg">Añadir</button>
+        <button type="submit" class="btn btn-primary btn-lg" onclick="return chk()">Añadir</button>
         <button class="btn btn-secondary btn-lg" onclick="window.history.back();">Volver</button>
     </div>
 </form>
 <br/>
 <br/>
 <br/>
+
+<script>
+
+    function comprobarAlfabetico(campo, size) {
+        var pat = /^[a-zñáéíóúü]+((\s[a-zñáéíóúü]+)*)$/i;    //Patrón para palabras alfabéticas en Español
+        var nul = /^([Nn][Uu][Ll][Ll])$/i;                                  //Patrón para null
+
+        if (campo.value.length > size) {                                        //Comprueba si el contenido del campo es mayor que size
+            alert("El valor introducido es mayor que el máximo permitido: " + size);
+            campo.style.borderColor = "red";
+            return false;
+        }
+
+        if (!(campo.value.match(pat))) {                                        //Si no coincide con el patrón pat, return false
+            alert("El campo tiene valores no permitidos");
+            campo.style.borderColor = "red";
+            return false;
+        }
+
+        if ((campo.value.trim()).match(nul)) {                              //trim elimina espacios y comprueba si el campo tiene el valor null.
+            alert("NULL no es un nombre válido");                      //match devuelve null si no encuentra el patrón
+            campo.style.borderColor = "red";
+            return false;
+        }
+        campo.style.borderColor = "green";
+        return true;
+    }
+
+    function comprobarTexto(campo, size) {
+        if (campo.value) {
+            if (campo.value.length > size) {
+                alert('Longitud incorrecta. El atributo ' + campo.name + ' debe ser maximo ' + size + ' y es ' + campo.value.length);
+                campo.style.borderColor = "red";
+                return false;
+            }
+        }
+        campo.style.borderColor = "green";
+        return true;
+    }
+
+    function chk() {
+        const asuntoInput = document.getElementById("asuntoInput");
+        const descripcionInput = document.getElementById("descripcionInput");
+
+        if (!comprobarAlfabetico(asuntoInput, 30)) {
+            return false;
+        }
+
+        if (!comprobarTexto(descripcionInput, 500)) {
+            return false;
+        }
+
+        return true;
+    }
+
+</script>
 
 {% endblock %}

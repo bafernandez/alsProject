@@ -64,6 +64,10 @@ handlers:
 - url: /eventos/delete
   script: handlers.eventos.delete.app
 
+- url: /lugares/main_search
+  script: handlers.lugares.main_search.app
+
+
 - url: .*
   script: handlers.main.app
 

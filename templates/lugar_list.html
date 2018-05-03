@@ -46,7 +46,7 @@
                 <a class="btn btn-success" href="/lugares/edit?id={{ lugar.key.urlsafe() }}" role="button"><i
                         class="far fa-edit"></i></a>
                 <a class="btn btn-danger" href="/lugares/delete?id={{ lugar.key.urlsafe() }}" role="button"><i
-                        class="far fa-trash-alt"></i></a>
+                        class="far fa-trash-alt" onclick="return confirm('¿Seguro que quieres borrar este lugar?');"></i></a>
 
             </td>
         </tr>
