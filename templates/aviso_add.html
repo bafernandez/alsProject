@@ -12,7 +12,7 @@
     <div class="form-group">
         <label for="descripcionInput">Información del aviso </label>
         <textarea class="form-control" id="descripcionInput" name="descripcion" rows="10"
-                  onchange="comprobarTexto(this,300)"></textarea>
+                  onchange="comprobarTexto(this,1000)"></textarea>
     </div>
 
 
@@ -73,7 +73,7 @@
             return false;
         }
 
-        if (!comprobarTexto(descripcionInput, 500)) {
+        if (!comprobarTexto(descripcionInput, 1000)) {
             return false;
         }
 

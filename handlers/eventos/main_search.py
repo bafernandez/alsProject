@@ -3,10 +3,10 @@
 import webapp2
 from webapp2_extras import jinja2
 from google.appengine.api import users
-from model.Lugar import Lugar
+from model.Evento import Evento
 import google.appengine.ext.ndb as ndb
 
-class LugarSearchHandler(webapp2.RequestHandler):
+class EventoMainSearchHandler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         admin = users.is_current_user_admin()
@@ -22,16 +22,16 @@ class LugarSearchHandler(webapp2.RequestHandler):
         self.patt = patt.strip().lower()
 
         self.result = []
-        Lugar.query().map(self.search)
+        Evento.query().map(self.search)
         if len(self.result) is 0:
-            lugares = Lugar.query()
+            eventos = Evento.query()
 
         else:
-            lugares = Lugar.query(Lugar.key.IN(self.result))
+            eventos = Evento.query(Evento.key.IN(self.result))
 
 
         values = {
-            "lugares": lugares,
+            "eventos": eventos,
             "usuario": usuario,
             "log": log,
             "admin": admin
@@ -39,21 +39,21 @@ class LugarSearchHandler(webapp2.RequestHandler):
 
         jinja = jinja2.get_jinja2(app=self.app)
         print(self.result)
-        self.response.write(jinja.render_template("lugar_list.html", **values))
+        self.response.write(jinja.render_template("evento_main_list.html", **values))
 
-    def search(self, lugar):
-        nombre = lugar.nombre.lower()
-        telefono = lugar.num_telefono
-        web = lugar.pagweb
-        categoria = lugar.categoria.lower()
+    def search(self, evento):
+        nombre = evento.nombre.lower()
+        lugar = evento.nombre_lugar.lower()
+        web = evento.pagweb
+        precio = evento.precio
 
-        if (self.patt in nombre or self.patt in web or self.patt in categoria
-                or self.patt in telefono):
-            self.result.append(lugar.key)
+        if (self.patt in nombre or self.patt in web or self.patt in lugar
+                or self.patt in precio):
+            self.result.append(evento.key)
 
 
 app = webapp2.WSGIApplication([
-    ('/lugares/search', LugarSearchHandler)
+    ('/eventos/main_search', EventoMainSearchHandler)
 ], debug=True)
 
 

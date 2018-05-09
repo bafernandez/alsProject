@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label for="descripcionInput">Descripcion del asunto </label>
-        <textarea class="form-control" id="descripcionInput" name="descripcion" rows="15">{{ descripcion }}</textarea>
+        <textarea class="form-control" id="descripcionInput" name="descripcion" rows="15" onchange="comprobarTexto(this,1000)">{{ descripcion }}</textarea>
     </div>
 
 
@@ -70,7 +70,7 @@
             return false;
         }
 
-        if (!comprobarTexto(descripcionInput, 500)) {
+        if (!comprobarTexto(descripcionInput, 1000)) {
             return false;
         }
 

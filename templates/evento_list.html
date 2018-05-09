@@ -1,23 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="container">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <input type="text" class="form-control input-lg" placeholder="Buscar"/>
-                    <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </span>
-                </div>
+    <form action="/eventos/search" method="POST">
+        <div class="row justify-content-md-center">
+            <div class="input-group col-md-8">
+                <input class="form-control" type="text" name="pattern" placeholder="Buscar"/>
+                <button class="btn btn-info btn" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
             </div>
         </div>
-    </div>
+    </form>
 </div>
-<br/>
 <br/>
 <div class="container">
     {% if eventos and eventos.count() > 0 %}

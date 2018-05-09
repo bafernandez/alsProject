@@ -6,7 +6,7 @@ from google.appengine.api import users
 from model.Lugar import Lugar
 import google.appengine.ext.ndb as ndb
 
-class LugarSearchHandler(webapp2.RequestHandler):
+class EventoSearchHandler(webapp2.RequestHandler):
     def post(self):
         user = users.get_current_user()
         admin = users.is_current_user_admin()
@@ -41,19 +41,19 @@ class LugarSearchHandler(webapp2.RequestHandler):
         print(self.result)
         self.response.write(jinja.render_template("lugar_list.html", **values))
 
-    def search(self, lugar):
-        nombre = lugar.nombre.lower()
-        telefono = lugar.num_telefono
-        web = lugar.pagweb
-        categoria = lugar.categoria.lower()
+    def search(self, evento):
+        nombre = evento.nombre.lower()
+        lugar = evento.nombre_lugar.lower()
+        web = evento.pagweb
+        precio = evento.precio
 
-        if (self.patt in nombre or self.patt in web or self.patt in categoria
-                or self.patt in telefono):
-            self.result.append(lugar.key)
+        if (self.patt in nombre or self.patt in web or self.patt in lugar
+                or self.patt in precio):
+            self.result.append(evento.key)
 
 
 app = webapp2.WSGIApplication([
-    ('/lugares/search', LugarSearchHandler)
+    ('/eventos/search', EventoSearchHandler)
 ], debug=True)
 
 

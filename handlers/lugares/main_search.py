@@ -4,6 +4,7 @@ import webapp2
 from webapp2_extras import jinja2
 from google.appengine.api import users
 from model.Lugar import Lugar
+import google.appengine.ext.ndb as ndb
 
 class LugarMainSearchHandler(webapp2.RequestHandler):
     def post(self):
@@ -17,19 +18,27 @@ class LugarMainSearchHandler(webapp2.RequestHandler):
             log = users.create_login_url('/')
 
 
-        self.patt = self.request.get("pattern", "")
+        patt = self.request.get("pattern", "")
+        self.patt = patt.strip().lower()
 
         self.result = []
-        lugares = Lugar.query().map(self.search)
+        Lugar.query().map(self.search)
+        if len(self.result) is 0:
+            lugares = Lugar.query()
+
+        else:
+            lugares = Lugar.query(Lugar.key.IN(self.result))
+
 
         values = {
-            "lugares": self.result,
+            "lugares": lugares,
             "usuario": usuario,
             "log": log,
             "admin": admin
         }
 
         jinja = jinja2.get_jinja2(app=self.app)
+        print(self.result)
         self.response.write(jinja.render_template("main.html", **values))
 
     def search(self, lugar):
@@ -38,10 +47,9 @@ class LugarMainSearchHandler(webapp2.RequestHandler):
         web = lugar.pagweb
         categoria = lugar.categoria.lower()
 
-        print ("-----------" + self.patt in categoria +"----------------")
         if (self.patt in nombre or self.patt in web or self.patt in categoria
                 or self.patt in telefono):
-            self.result.append(lugar)
+            self.result.append(lugar.key)
 
 
 app = webapp2.WSGIApplication([

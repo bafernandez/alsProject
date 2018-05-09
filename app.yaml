@@ -67,6 +67,14 @@ handlers:
 - url: /lugares/main_search
   script: handlers.lugares.main_search.app
 
+- url: /lugares/search
+  script: handlers.lugares.search.app
+
+- url: /eventos/main_search
+  script: handlers.eventos.main_search.app
+
+- url: /eventos/search
+  script: handlers.eventos.search.app
 
 - url: .*
   script: handlers.main.app

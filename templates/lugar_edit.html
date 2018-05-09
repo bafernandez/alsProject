@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<form id="editlugar" method="POST" action="/lugares/edit" enctype="multipart/form-data">
+<form id="editlugar" method="POST" action="/lugares/edit" enctype="multipart/form-data" style="margin-bottom: 20px">
     <div class="form-group">
         <div class="form-group">
             <label for="nombreInput">Nonbre</label>
@@ -10,8 +10,8 @@
     </div>
     <div class="form-group">
         <label for="descripcionInput">Descripcion del lugar </label>
-        <textarea class="form-control" id="descripcionInput" name="descripcion" rows="3"
-                  onchange="comprobarTexto(this,500)">{{ descripcion }}</textarea>
+        <textarea class="form-control" id="descripcionInput" name="descripcion" rows="7"
+                  onchange="comprobarTexto(this,2000)">{{ descripcion }}</textarea>
     </div>
     <div class="row">
         <div class="form-group col-md-6">
@@ -81,9 +81,6 @@
         <button class="btn btn-secondary btn-lg" onclick="window.history.back();">Volver</button>
     </div>
 </form>
-<br/>
-<br/>
-<br/>
 <script>
 
     function comprobarEmail(campo, size) {
@@ -176,7 +173,6 @@
 
     function chk() {
         const nombreInput = document.getElementById("nombreInput");
-        alert()
         const descripcionInput = document.getElementById("descripcionInput");
         const telefonoInput = document.getElementById("telefonoInput");
         const emailInput = document.getElementById("emailInput");
@@ -187,7 +183,7 @@
             return false;
         }
 
-        if (!comprobarTexto(descripcionInput, 500)) {
+        if (!comprobarTexto(descripcionInput, 2000)) {
             return false;
         }
 
@@ -203,7 +199,7 @@
             return false;
         }
 
-        if (!comprobarArchivo(InputFile)) {
+        if ((InputFile.value.length != 0) && !comprobarArchivo(InputFile)) {
             return false;
         }
 
