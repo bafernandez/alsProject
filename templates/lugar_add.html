@@ -6,7 +6,7 @@
             <label for="nombreInput">Nombre</label>
             <input type="text" class="form-control" id="nombreInput" name="nombre" required
                    placeholder="Nombre del lugar"
-                   onchange="comprobarAlfabetico(this,20)">
+                   onchange="comprobarAlfabetico(this,35)">
 
         </div>
     </div>
@@ -163,7 +163,7 @@
         const direccionInput = document.getElementById("direccionInput");
         const InputFile = document.getElementById("InputFile");
 
-        if (!comprobarAlfabetico(nombreInput, 20)) {
+        if (!comprobarAlfabetico(nombreInput, 35)) {
             return false;
         }
 

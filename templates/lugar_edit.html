@@ -5,7 +5,7 @@
         <div class="form-group">
             <label for="nombreInput">Nonbre</label>
             <input type="text" class="form-control" id="nombreInput" name="nombre" placeholder="Nombre del lugar"
-                   value="{{ nombre }}" onchange="comprobarAlfabetico(this,20)" readonly>
+                   value="{{ nombre }}" onchange="comprobarAlfabetico(this,35)" readonly>
         </div>
     </div>
     <div class="form-group">
@@ -179,7 +179,7 @@
         const direccionInput = document.getElementById("direccionInput");
         const InputFile = document.getElementById("InputFile");
 
-        if (!comprobarAlfabetico(nombreInput, 20)) {
+        if (!comprobarAlfabetico(nombreInput, 35)) {
             return false;
         }
 
